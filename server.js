@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(require('./routes'));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist").then(() => {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/viewpoint").then(() => {
   console.log('database connected');
 });
 
