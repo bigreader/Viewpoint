@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="bg.css">
+	<link rel="stylesheet" type="text/css" href="decision.css">
+
+	<title>Viewpoint</title>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark font-weight-bold justify-content-between">
+		<a class="navbar-brand" href="#">Viewpoint</a>
+		<a class="dropdown-toggle text-white" href="#" style="font-size: 1.5em;">Summer Vacation</a>
+		<a class="dropdown-toggle text-white" href="#">Account</a>
+	</nav>
+
+	<div class="container-fluid my-3 my-lg-5 px-lg-5">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="edit-head">
+					<h2>Options</h2>
+					<button class="btn btn-sm btn-outline-secondary">Edit</button>
+				</div>
+				<ul id="list-options" class="cell-list">
+					<li class="bg-grad-3">
+						<h3 class="title">Alaska</h3>
+						<p class="status">Mixed</p>
+						<div class="selectable"></div>
+					</li>
+					<li class="active bg-grad-2">
+						<h3 class="title">Iceland</h3>
+						<p class="status">Mostly Negative</p>
+						<div class="selectable"></div>
+					</li>
+					<li class="bg-grad-5">
+						<h3 class="title">Yellowstone</h3>
+						<p class="status">Very Positive</p>
+						<div class="selectable"></div>
+					</li>
+				</ul>
+				<hr>
+				<div class="edit-head">
+					<h2>Factors</h2>
+					<button class="btn btn-sm btn-outline-secondary">Edit</button>
+				</div>
+				<ul id="list-factors" class="cell-list">
+					<li class="bg-grad-4">
+						<h3 class="title">Price</h3>
+						<p class="status">2 good options</p>
+					</li>
+					<li class="bg-grad-5">
+						<h3 class="title">Scenery</h3>
+						<p class="status">All great options</p>
+					</li>
+					<li class="bg-grad-2">
+						<h3 class="title">Food</h3>
+						<p class="status">1 good option</p>
+					</li>
+					<li class="bg-grad-3">
+						<h3 class="title">Schedule</h3>
+						<p class="status">2 decent options</p>
+					</li>
+				</ul>
+				<hr>
+				<div class="edit-head">
+					<h2>Fills</h2>
+				</div>
+				<ul id="list-factors" class="cell-list" style="display: block;">
+					<li class="bg-mood-1"><h3 class="title">Mood 1</h3></li>
+					<li class="bg-mood-2"><h3 class="title">Mood 2</h3></li>
+					<li class="bg-mood-3"><h3 class="title">Mood 3</h3></li>
+					<li class="bg-mood-4"><h3 class="title">Mood 4</h3></li>
+					<li class="bg-mood-5"><h3 class="title">Mood 5</h3></li>
+					<li class="bg-grad-1"><h3 class="title">Grad 1</h3></li>
+					<li class="bg-grad-2"><h3 class="title">Grad 2</h3></li>
+					<li class="bg-grad-3"><h3 class="title">Grad 3</h3></li>
+					<li class="bg-grad-4"><h3 class="title">Grad 4</h3></li>
+					<li class="bg-grad-5"><h3 class="title">Grad 5</h3></li>
+					<li class="bg-mostly-p"><h3 class="title">Mostly P</h3></li>
+					<li class="bg-mostly-n"><h3 class="title">Mostly N</h3></li>
+					<li class="bg-mixed"><h3 class="title">Mixed</h3></li>
+					<li class="bg-prob-p"><h3 class="title">Prob P</h3></li>
+					<li class="bg-prob-n"><h3 class="title">Prob N</h3></li>
+					<li class="bg-elim-p"><h3 class="title">Elim P</h3></li>
+					<li class="bg-elim-n"><h3 class="title">Elim N</h3></li>
+
+					<hr>
+
+					<li class="bg-mixed"><h3 class="title">Mixed</h3></li>
+					<li class="bg-prob-n"><h3 class="title">Prob N</h3></li>
+					<li class="bg-elim-n"><h3 class="title">Elim N</h3></li>
+					<li class="bg-grad-1"><h3 class="title">Grad 1</h3></li>
+					<li class="bg-mood-1"><h3 class="title">Mood 1</h3></li>
+					<li class="bg-mostly-n"><h3 class="title">Mostly N</h3></li>
+					<li class="bg-grad-2"><h3 class="title">Grad 2</h3></li>
+					<li class="bg-mood-2"><h3 class="title">Mood 2</h3></li>
+					<li class="bg-grad-3"><h3 class="title">Grad 3</h3></li>
+					<li class="bg-mood-3"><h3 class="title">Mood 3</h3></li>
+					<li class="bg-mostly-p"><h3 class="title">Mostly P</h3></li>
+					<li class="bg-grad-4"><h3 class="title">Grad 4</h3></li>
+					<li class="bg-mood-4"><h3 class="title">Mood 4</h3></li>
+					<li class="bg-grad-5"><h3 class="title">Grad 5</h3></li>
+					<li class="bg-mood-5"><h3 class="title">Mood 5</h3></li>
+					<li class="bg-prob-p"><h3 class="title">Prob P</h3></li>
+					<li class="bg-elim-p"><h3 class="title">Elim P</h3></li>
+				</ul>
+			</div>
+			<div class="col-lg-6 px-lg-5">
+				<div class="edit-head">
+					<h2>Iceland</h2>
+					<button class="btn btn-sm btn-outline-secondary">Edit</button>
+				</div>
+				<img class="img-fluid rounded my-3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Gullfoss_from_the_Air.jpg/1024px-Gullfoss_from_the_Air.jpg">
+				<ul id="list-moods" class="cell-list cell-grid">
+					<li class="bg-mood-1">
+						<h3 class="title">Price</h3>
+					</li>
+					<li class="bg-mood-5">
+						<h3 class="title">Scenery</h3>
+					</li>
+					<li class="bg-mood-2">
+						<h3 class="title">Food</h3>
+					</li>
+					<li class="bg-mood-3">
+						<h3 class="title">Schedule</h3>
+					</li>
+					<li class="bg-mood-5">
+						<h3 class="title">Schedule</h3>
+					</li>
+					<li class="bg-mood-4">
+						<h3 class="title">Schedule</h3>
+					</li>
+					<li class="bg-mood-3">
+						<h3 class="title">Schedule</h3>
+					</li>
+				</ul>
+			</div>
+			<div class="col-lg-3">
+				<div class="edit-head">
+					<h2>Insights</h2>
+				</div>
+				<ul id="list-insights" class="cell-list">
+					<li class="bg-mostly-p">
+						<h3 class="title">Schedule</h3>
+						<p class="body">It's close, but <b>Alaska</b> looks like the best choice.</p>
+					</li>
+					<li class="bg-mostly-n">
+						<h3 class="title">Yellowstone</h3>
+						<p class="body">You've got better options than this one in each of your factors.</p>
+					</li>
+					<li class="bg-grad-5">
+						<h3 class="title">Food</h3>
+						<p class="body">Every option looks good for this factor.</p>
+					</li>
+					<li class="bg-prob-p">
+						<h3 class="title">Alaska</h3>
+						<p class="body">You haven't added feelings on <b>Schedule</b> yet.</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+:root {
+	color-scheme: light dark;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+
+.navbar {
+	background: var(--prob-p);
+}
+
+.edit-head {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.5rem 1rem 0;
+	min-height: 3em;
+}
+
+.edit-head button {
+	align-self: flex-end;
+	position: relative;
+	bottom: 0.6rem;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+.cell-list li {
+	margin: 1rem 0;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	color: white;
+	position: relative;
+	box-shadow: 0 0.25rem 0.75rem -0.25rem var(--shadow);
+}
+
+.cell-grid {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0.5rem 0;
+}
+
+.cell-grid li {
+	margin: 0.5rem;
+	width: calc(50% - 1rem);
+}
+
+.selectable {
+	border: 0 solid #fffd;
+	position: absolute;
+	top: 0.15rem;
+	right: 0.15rem;
+	bottom: 0.15rem;
+	left: 0.15rem;
+	border-radius: 0.35rem;
+	transition: border 0.1s ease-out;
+}
+
+.active .selectable,
+li:hover .selectable {
+	border-width: 0.15rem;
+}
+
+.cell-list li > * {
+	margin: 0;
+}
+
+.cell-list .title {
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+.cell-list .status {
+	font-size: 0.75em;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.cell-list .body {
+	margin-top: 0.5em;
+	/*padding-left: 0.5em;
+	border-left: 0.15em solid white;*/
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background: black;
+		color: white;
+	}
+
+	.cell-list li {
+		box-shadow: none;
+	}
+
+	.selectable {
+		border-color: rgba(0,0,0,0.7);
+	}
+
+	.active .selectable,
+	li:hover .selectable {
+		border-width: 0.2rem;
+	}
+}
