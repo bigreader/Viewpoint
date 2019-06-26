@@ -1,12 +1,10 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import Decision from './pages/Decision';
 import './App.css';
 
 function App() {
   return (
-    <>
-      <Navbar />
-    </>
+    <Decision />
   );
 }
 
