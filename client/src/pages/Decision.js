@@ -9,9 +9,9 @@ function Page() {
     <>
       <Navbar />
 
-      <div className="container-fluid my-3 my-lg-5 px-lg-5">
+      <div className="container-fluid my-3 my-xl-5 px-xl-5">
         <div className="row">
-          <div className="col-lg-3">
+          <div className="col-md-5 col-lg-3">
             <CellList list="Options">
               <Cell live title="Alaska" status="Mixed" bg="grad-3" />
               <Cell live active title="Iceland" status="Mostly Negative" bg="grad-2" />
@@ -26,11 +26,11 @@ function Page() {
             </CellList>
           </div>
 
-          <div className="col-lg-6 px-lg-5">
+          <div className="col-md-7 col-lg-5 col-xl-6 px-xl-5">
             <Slice title="Iceland" />
           </div>
 
-          <div class="col-lg-3">
+          <div class="col-lg-4 col-xl-3">
             <CellList list="Insights" editable={false}>
               <Cell title="Schedule" bg="mostly-p">
                 It's close, but <b>Alaska</b> looks like the best choice.
