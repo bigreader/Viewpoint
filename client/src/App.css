@@ -6,8 +6,9 @@
 	--c: rgb(37,220,215);
 	--b: rgb(45,148,213);
 	--p: rgb(164,75,215);
-	--k: rgb(53,63,67);
-	--kk: rgb(83, 99, 105);
+	--k1: rgb(53,63,67);
+	--k2: rgb(83, 99, 105);
+	--k3: rgb(173, 181, 184);
 
 	--1: rgb(253,104,60);
 	--2: rgb(253,171,28);
@@ -29,8 +30,8 @@
 	--prob-p:   linear-gradient(120deg, var(--c) 0%, var(--b) 50%, var(--p) 100%);
 	--prob-n:   linear-gradient(120deg, var(--o) 0%, var(--r) 50%, var(--p) 100%);
 
-	--elim-p:   linear-gradient(120deg, var(--c) 0%, rgb(37,118,170) 50%, var(--k) 100%);
-	--elim-n:   linear-gradient(120deg, var(--o) 0%, rgb(194,55,60 ) 50%, var(--k) 100%);
+	--elim-p:   linear-gradient(120deg, var(--c) 0%, rgb(37,118,170) 50%, var(--k1) 100%);
+	--elim-n:   linear-gradient(120deg, var(--o) 0%, rgb(194,55,60 ) 50%, var(--k1) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,7 +43,8 @@
 		--c: rgb(31, 191, 186);
 		--b: rgb(65, 111, 194);
 		--p: rgb(136, 59, 173);
-		--k: rgb(83, 99, 105);
+		--k1: rgb(83, 99, 105);
+		--k3: rgb(53, 63, 67);
 
 		--1: rgb(191, 63, 6);
 		--2: rgb(211, 131, 2);
@@ -72,8 +74,11 @@
 .bg-prob-p   { background: var(--prob-p); --shadow: var(--b); }
 .bg-prob-n   { background: var(--prob-n); --shadow: var(--r); }
 
-.bg-elim-p   { background: var(--elim-p); --shadow: var(--kk); }
-.bg-elim-n   { background: var(--elim-n); --shadow: var(--kk); }
+.bg-elim-p   { background: var(--elim-p); --shadow: var(--k2); }
+.bg-elim-n   { background: var(--elim-n); --shadow: var(--k2); }
+
+.bg-unknown  { background: var(--k2); --shadow: var(--k2); }
+.bg-subtle   { background: var(--k3); color: black; --shadow: transparent; }
 
 
 :root {
@@ -127,44 +132,6 @@ ul {
 	width: calc(50% - 1rem);
 }
 
-.selectable {
-	border: 0 solid #fffd;
-	position: absolute;
-	top: 0.15rem;
-	right: 0.15rem;
-	bottom: 0.15rem;
-	left: 0.15rem;
-	border-radius: 0.35rem;
-	transition: border 0.1s ease-out;
-}
-
-.active .selectable,
-li:hover .selectable {
-	border-width: 0.15rem;
-}
-
-.cell-list li > * {
-	margin: 0;
-}
-
-.cell-list .title {
-	font-size: 1.5em;
-	font-weight: 700;
-}
-
-.cell-list .status {
-	font-size: 0.75em;
-	font-weight: 500;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
-
-.cell-list .body {
-	margin-top: 0.5em;
-	/*padding-left: 0.5em;
-	border-left: 0.15em solid white;*/
-}
-
 
 
 @media (prefers-color-scheme: dark) {
@@ -175,14 +142,5 @@ li:hover .selectable {
 
 	.cell-list li {
 		box-shadow: none;
-	}
-
-	.selectable {
-		border-color: rgba(0,0,0,0.7);
-	}
-
-	.active .selectable,
-	li:hover .selectable {
-		border-width: 0.2rem;
 	}
 }

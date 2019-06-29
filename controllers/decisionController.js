@@ -18,6 +18,7 @@ module.exports = {
   findOne: function (req, res) {
     db.Decision
       .findById(req.params.decision)
+      .populate('options factors')
       .then(doc => res.json(doc))
       .catch(handleError(res));
   },

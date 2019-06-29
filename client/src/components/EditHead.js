@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default (props) => (
-  <div class="edit-head">
+  <div className="edit-head">
     <h2>{props.children}</h2>
-    {props.editable === false? null : <button class="btn btn-sm btn-outline-secondary">Edit</button>}
+    {props.editable === false ? null : <button className={`btn btn-sm btn${props.editing? '' : '-outline'}-secondary`} onClick={props.onEdit}>{props.editing? 'Done' : 'Edit'}</button>}
   </div>
 );

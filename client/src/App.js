@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   return (
-    <Decision />
+    <Decision decision="brt51b1xh"/>
   );
 }
 
