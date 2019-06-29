@@ -4,10 +4,16 @@ import CellList from '../components/CellList';
 import Navbar from '../components/Navbar';
 import Slice from '../components/Slice';
 import API from '../utils/api';
+import Calc from '../utils/calc';
 
 class DecisionPage extends React.Component {
   state = {
-    decision: null
+    decision: null,
+    selected: {
+      from: '',
+      id: ''
+    },
+    slice: {}
   }
 
   componentDidMount() {
@@ -18,12 +24,31 @@ class DecisionPage extends React.Component {
   reload = () => {
     API.decision.find().then(res => {
       // console.log(res.data);
+      const { from, id } = this.state.selected;
+      console.log(id, res.data[from]);
+      if (!res.data[from] || !res.data[from].find(slice => slice._id === id)) {
+        this.setState({
+          selected: {
+            from: '',
+            id: ''
+          }
+        });
+      }
       this.setState({ decision: res.data });
     });
     console.log('sent');
   }
 
+  selectSlice = (from, id) => {
+    this.setState({
+      selected: { from, id },
+      slice: this.state.decision[from].find(doc => doc._id === id)
+    });
+  }
+
   render() {
+    console.log(this.state);
+
     if (!this.state.decision) {
       return (
         <>
@@ -40,34 +65,44 @@ class DecisionPage extends React.Component {
         <div className="container-fluid my-3 my-xl-5 px-xl-5">
           <div className="row">
             <div className="col-md-5 col-lg-3">
-              <CellList list="Options" api={API.option} onChange={this.reload} cells={this.state.decision.options.map(option => {
-                return {
-                  id: option._id,
-                  title: option.name,
-                  status: "Positive"
-                }
-              })} />
+              <CellList list="Options" api={API.option} onChange={this.reload}
+                selectFrom="options" onSelect={this.selectSlice} selected={this.state.selected}
+                cells={this.state.decision.options.map(option => {
+                  const moods = this.state.decision.moods.filter(mood => mood.option._id === option._id);
+                  return {
+                    id: option._id,
+                    title: option.name,
+                    status: Calc.moods.summary(moods),
+                    bg: Calc.moods.bg(moods)
+                  }
+                })} />
               <hr />
-              <CellList list="Factors" api={API.factor} onChange={this.reload} cells={this.state.decision.factors.map(factor => {
-                return {
-                  id: factor._id,
-                  title: factor.name,
-                  status: "2 good options"
-                }
-              })} />
+              <CellList list="Factors" api={API.factor} onChange={this.reload}
+                selectFrom="factors" onSelect={this.selectSlice} selected={this.state.selected}
+                cells={this.state.decision.factors.map(factor => {
+                  const moods = this.state.decision.moods.filter(mood => mood.factor._id === factor._id);
+                  return {
+                    id: factor._id,
+                    title: factor.name,
+                    status: Calc.moods.summary(moods),
+                    bg: Calc.moods.bg(moods)
+                  }
+                })} />
               <hr />
               <CellList list="Moods" editable={false} cells={this.state.decision.moods.map(mood => {
                 return {
                   id: mood._id,
                   title: mood.val,
                   status: mood.option.name + ' - ' + mood.factor.name,
-                  bg: 'subtle'
+                  bg: mood.set ? 'mood-' + mood.val : 'subtle'
                 }
               })} />
             </div>
 
             <div className="col-md-7 col-lg-5 col-xl-6 px-xl-5">
-              <Slice title="Iceland" />
+              <Slice decision={this.state.decision} selected={this.state.selected} onChangeMood={(id, data) => {
+                this.state.decision.moods.find(mood => mood._id === id).assign(data)
+              }}/>
             </div>
 
             <div className="col-lg-4 col-xl-3">

@@ -26,5 +26,11 @@ export default {
     find   : function(decision, factor)       { return Axios.get(   `/api/decisions/${decision || defaultDecision}/factors/${factor}`) },
     update : function(decision, factor, data) { return Axios.put(   `/api/decisions/${decision || defaultDecision}/factors/${factor}`, data) },
     delete : function(decision, factor)       { return Axios.delete(`/api/decisions/${decision || defaultDecision}/factors/${factor}`) }
+  },
+
+  mood: {
+    list   : function(decision)             { return Axios.get(`/api/decisions/${decision || defaultDecision}/moods`) },
+    find   : function(decision, mood)       { return Axios.get(`/api/decisions/${decision || defaultDecision}/moods/${mood}`) },
+    update : function(decision, mood, data) { return Axios.put(`/api/decisions/${decision || defaultDecision}/moods/${mood}`, data) }
   }
 }

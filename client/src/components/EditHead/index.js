@@ -1,4 +1,5 @@
 import React from 'react';
+import './EditHead.css';
 
 export default (props) => (
   <div className="edit-head">

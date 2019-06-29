@@ -21,48 +21,11 @@ module.exports = {
   },
   findOneByIntersect: function (req, res) {
     return res.status(501).end();
-    db.Factor
-      .findById(req.params.factor)
-      .then(doc => res.json(doc))
-      .catch(handleError(res));
-  },
-  create: function (req, res) {
-    db.Factor
-      .create(req.body)
-      .then(doc => {
-        db.Decision
-        .findById(req.params.decision)
-        .then(decision => {
-          if (err) return handleError(res);
-          decision.factors.push(doc._id);
-          decision.save();
-          res.json(doc);
-        })
-        .catch(handleError(res));
-      })
-      .catch(handleError(res));
   },
   update: function (req, res) {
-    db.Factor
-      .findOneAndUpdate({ _id: req.params.factor }, req.body)
+    db.Mood
+      .findOneAndUpdate({ _id: req.params.mood }, req.body)
       .then(doc => res.json(doc))
-      .catch(handleError(res));
-  },
-  remove: function (req, res) {
-    db.Factor
-      .findById({ _id: req.params.factor })
-      .then(doc => {
-        db.Decision
-        .findById(req.params.decision)
-        .then(decision => {
-          if (err) return handleError(res);
-          decision.factors.push(doc._id);
-          decision.save();
-          res.json(doc);
-        })
-        .catch(handleError(res));
-        doc.remove();
-      })
       .catch(handleError(res));
   }
 };
