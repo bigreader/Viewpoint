@@ -79,6 +79,7 @@
 
 .bg-unknown  { background: var(--k2); --shadow: var(--k2); }
 .bg-subtle   { background: var(--k3); color: black; --shadow: transparent; }
+.bg-border   { background: none; border: 0.2rem solid var(--k2); color: black; --shadow: transparent; }
 
 
 :root {

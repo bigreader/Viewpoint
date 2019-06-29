@@ -12,6 +12,6 @@ export default (props) => (
     {!props.status? null : <p className="status">{props.status}</p>}
     {!props.children? null : <p className="body">{props.children}</p>}
     {!props.live? null : <div className="selectable"></div>}
-    {!props.editing ? null : <button class="delete" onClick={props.onDelete}>&times;</button>}
+    {!props.editing ? null : <button className="delete" onClick={props.onDelete}>&times;</button>}
   </li>
 );

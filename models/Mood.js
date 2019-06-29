@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-  set: Boolean,
+  set: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   val: Number,
   updated: {
     type: Date,

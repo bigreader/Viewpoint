@@ -17,8 +17,8 @@ class DecisionPage extends React.Component {
 
   reload = () => {
     API.decision.find().then(res => {
+      // console.log(res.data);
       this.setState({ decision: res.data });
-      console.log(this.state);
     });
     console.log('sent');
   }
@@ -54,12 +54,16 @@ class DecisionPage extends React.Component {
                   title: factor.name,
                   status: "2 good options"
                 }
-              })}>
-                <Cell live title="Price" status="2 good options" bg="grad-4" />
-                <Cell live title="Scenery" status="All great options" bg="grad-5" />
-                <Cell live title="Food" status="1 good option" bg="grad-2" />
-                <Cell live title="Schedule" status="2 decent options" bg="grad-3" />
-              </CellList>
+              })} />
+              <hr />
+              <CellList list="Moods" editable={false} cells={this.state.decision.moods.map(mood => {
+                return {
+                  id: mood._id,
+                  title: mood.val,
+                  status: mood.option.name + ' - ' + mood.factor.name,
+                  bg: 'subtle'
+                }
+              })} />
             </div>
 
             <div className="col-md-7 col-lg-5 col-xl-6 px-xl-5">
@@ -70,19 +74,19 @@ class DecisionPage extends React.Component {
               <CellList list="Insights" editable={false}>
                 <Cell title="Schedule" bg="mostly-p">
                   It's close, but <b>Alaska</b> looks like the best choice.
-              </Cell>
+                </Cell>
                 <Cell title="Yellowstone" bg="mostly-n">
                   You've got better options than this one in each of your factors.
-              </Cell>
+                </Cell>
                 <Cell title="Scenery" bg="grad-5">
                   Every option looks good for this factor.
-              </Cell>
+                </Cell>
                 <Cell title="Iceland &amp; Alaska" bg="grad-3">
                   You feel similar ways about both of these options. Adding more factors might help you decide.
-              </Cell>
+                </Cell>
                 <Cell title="Alaska" bg="prob-p">
                   You haven't added feelings on <b>Schedule</b> yet.
-              </Cell>
+                </Cell>
                 <Cell title="42 days left" status="July 31, 2019" bg="grad-1" />
               </CellList>
             </div>

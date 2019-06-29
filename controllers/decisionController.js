@@ -19,6 +19,10 @@ module.exports = {
     db.Decision
       .findById(req.params.decision)
       .populate('options factors')
+      .populate({
+        path: 'moods',
+        populate: 'option factor'
+      })
       .then(doc => res.json(doc))
       .catch(handleError(res));
   },

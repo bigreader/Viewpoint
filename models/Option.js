@@ -3,11 +3,7 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
   name: String,
   img: String,
-
-  moods: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Mood'
-  }]
+  order: Number
 });
 
 var model = mongoose.model('Option', schema);

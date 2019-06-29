@@ -6,9 +6,8 @@ export default (props) => (
       name: prompt()
     })
   }}>
-    <li className="bg-subtle">
+    <li className="bg-border">
       <h3 className="title">Add {props.type}...</h3>
-      <div className="selectable"></div>
     </li>
   </a>
 );
