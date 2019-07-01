@@ -10,10 +10,10 @@ const moodSummaries = [
 export default {
   moods: {
     average: function (moods = []) {
-      if (!moods || moods.length === 0) return -1;
-      const sumVals = moods.reduce((acc, mood) => acc + mood.val, 0);
-      const validMoods = moods.reduce((acc, mood) => acc + (mood.set? 1:0), 0);
-      return sumVals / validMoods;
+      const validMoods = moods.filter(mood => mood.set);
+      if (!moods || validMoods.length === 0) return -1;
+      const sumVals = validMoods.reduce((acc, mood) => acc + mood.val, 0);
+      return sumVals / validMoods.length;
     },
 
     averageRound: function (moods) {

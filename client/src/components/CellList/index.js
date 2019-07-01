@@ -19,7 +19,7 @@ class CellList extends React.Component {
     return (
       <>
         {this.props.head === false ? null : <EditHead editable={this.props.editable} editing={this.state.editing} onEdit={this.handleEdit}>{this.props.list}</EditHead>}
-        <ul id={'list-' + this.props.list.toLowerCase()} className={'cell-list' + (this.props.grid ? ' cell-grid' : '')}>
+        <ul id={'list-' + this.props.list.toLowerCase()} className="cell-list">
           {!this.props.cells ? this.props.children : this.props.cells.map(cell => (
             <Cell
               key={cell.id}

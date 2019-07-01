@@ -17,15 +17,20 @@ class DecisionPage extends React.Component {
   }
 
   componentDidMount() {
-    API.decision.use(this.props.decision);
+    API.decision.use(this.props.id);
     this.reload();
+  }
+
+  componentDidUpdate() {
+    if (!this.state.decision || this.props.id !== this.state.decision._id) {
+      API.decision.use(this.props.id);
+      this.reload();
+    }
   }
 
   reload = () => {
     API.decision.find().then(res => {
-      // console.log(res.data);
       const { from, id } = this.state.selected;
-      console.log(id, res.data[from]);
       if (!res.data[from] || !res.data[from].find(slice => slice._id === id)) {
         this.setState({
           selected: {
@@ -36,7 +41,6 @@ class DecisionPage extends React.Component {
       }
       this.setState({ decision: res.data });
     });
-    console.log('sent');
   }
 
   selectSlice = (from, id) => {
@@ -47,12 +51,10 @@ class DecisionPage extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-
     if (!this.state.decision) {
       return (
         <>
-          <Navbar />
+          <Navbar showDecisions={true} />
           <p>Loading...</p>
         </>
       )
@@ -60,7 +62,7 @@ class DecisionPage extends React.Component {
 
     return (
       <>
-        <Navbar />
+        <Navbar showDecisions={true} current={this.state.decision} bg={Calc.moods.bg(this.state.decision.moods)} />
 
         <div className="container-fluid my-3 my-xl-5 px-xl-5">
           <div className="row">
@@ -88,15 +90,6 @@ class DecisionPage extends React.Component {
                     bg: Calc.moods.bg(moods)
                   }
                 })} />
-              <hr />
-              <CellList list="Moods" editable={false} cells={this.state.decision.moods.map(mood => {
-                return {
-                  id: mood._id,
-                  title: mood.val,
-                  status: mood.option.name + ' - ' + mood.factor.name,
-                  bg: mood.set ? 'mood-' + mood.val : 'subtle'
-                }
-              })} />
             </div>
 
             <div className="col-md-7 col-lg-5 col-xl-6 px-xl-5">

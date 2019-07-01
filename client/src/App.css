@@ -103,10 +103,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
 }
 
-.navbar {
-	background: var(--prob-p);
-}
-
 ul {
 	list-style: none;
 	padding: 0;
@@ -114,4 +110,8 @@ ul {
 
 hr {
 	margin: 1rem;
+}
+
+.dropdown-toggle:focus {
+	outline: none;
 }
