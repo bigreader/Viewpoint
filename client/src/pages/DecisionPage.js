@@ -76,7 +76,7 @@ class DecisionPage extends React.Component {
                   }
                 })} />
               <hr />
-              <CellList list="Factors" api={API.factor} onChange={this.reload}
+              <CellList list="Factors" api={API.factor} decision={this.state.decision} connector={this.state.decision.factor}
                 selectFrom="factors" onSelect={this.selectSlice} selected={this.state.selected}
                 cells={this.state.decision.factors.map(factor => {
                   const moods = this.state.decision.moods.filter(mood => mood.factor._id === factor._id);

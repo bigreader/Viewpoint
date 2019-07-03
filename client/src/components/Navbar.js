@@ -38,12 +38,7 @@ class Navbar extends React.Component {
                 return <NavLink key={decision._id} className="dropdown-item" to={'/decisions/' + decision._id}>{decision.name}</NavLink>;
               })}
               <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="add" onClick={event => {
-                event.preventDefault();
-                const name = prompt('Decision name:');
-                if (!name) return;
-                API.decision.create({ name }).then(this.reload);
-              }}>Add new...</a>
+              <Link to="/decisions/add" className="dropdown-item">New decision...</Link>
             </div>
           </div>}
         <div className="nav-item dropdown">
