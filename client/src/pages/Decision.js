@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Slice from '../components/Slice';
 import API from '../utils/api';
 import Calc from '../utils/calc';
+import Decision from '../utils/decision';
 
 class DecisionPage extends React.Component {
   state = {
@@ -17,29 +18,24 @@ class DecisionPage extends React.Component {
   }
 
   componentDidMount() {
-    API.decision.use(this.props.id);
-    this.reload();
+    this.reloadDecision();
   }
 
   componentDidUpdate() {
-    if (!this.state.decision || this.props.id !== this.state.decision._id) {
-      API.decision.use(this.props.id);
-      this.reload();
+    if (!this.state.decision || this.props.id !== this.state.decision.id) {
+      this.reloadDecision();
     }
   }
-
-  reload = () => {
-    API.decision.find().then(res => {
-      const { from, id } = this.state.selected;
-      if (!res.data[from] || !res.data[from].find(slice => slice._id === id)) {
-        this.setState({
-          selected: {
-            from: '',
-            id: ''
-          }
-        });
+  
+  reloadDecision() {
+    const decision = new Decision(this.props.id);
+    decision.onRefresh(() => this.forceUpdate());
+    this.setState({
+      decision,
+      selected: {
+        from: '',
+        id: ''
       }
-      this.setState({ decision: res.data });
     });
   }
 
@@ -51,7 +47,7 @@ class DecisionPage extends React.Component {
   }
 
   render() {
-    if (!this.state.decision) {
+    if (!this.state.decision || !this.state.decision.data) {
       return (
         <>
           <Navbar showDecisions={true} />
@@ -67,7 +63,7 @@ class DecisionPage extends React.Component {
         <div className="container-fluid my-3 my-xl-5 px-xl-5">
           <div className="row">
             <div className="col-md-5 col-lg-3">
-              <CellList list="Options" api={API.option} onChange={this.reload}
+              <CellList list="Options" api={API.option} decision={this.state.decision} connector={this.state.decision.option}
                 selectFrom="options" onSelect={this.selectSlice} selected={this.state.selected}
                 cells={this.state.decision.options.map(option => {
                   const moods = this.state.decision.moods.filter(mood => mood.option._id === option._id);

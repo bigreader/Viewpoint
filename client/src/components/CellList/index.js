@@ -31,16 +31,15 @@ class CellList extends React.Component {
               editing={this.state.editing}
               onClick={() => this.props.onSelect(this.props.selectFrom, cell.id)}
               onDelete={() => {
-                this.props.api.delete(null, cell.id).then(this.props.onChange)
+                this.props.connector.delete(cell.id)
               }}>
               {cell.body}
             </Cell>
           ))}
-          {(this.state.editing || (this.props.api && this.props.cells && this.props.cells.length === 0))
+          {(this.state.editing || (this.props.connector && this.props.cells && this.props.cells.length === 0))
             && <CellAdd
               type={this.props.list.toLowerCase().replace(/s$/, '')}
-              onCreate={data => this.props.api.create(null, data).then(() => {
-                this.props.onChange();
+              onCreate={data => this.props.connector.create(data).then(() => {
                 this.setState({ editing: true });
               })} />}
         </ul>
