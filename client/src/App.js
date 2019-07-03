@@ -7,8 +7,8 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Route exact path="/" render={props => <p>Welcome to Viewpoint!</p>} />
       <Switch>
+        <Route exact path="/" render={props => <AddDecisionPage />} />
         <Route exact path="/decisions/add" render={props => <AddDecisionPage />} />
         <Route path="/decisions/:decision" render={props => <DecisionPage id={props.match.params.decision} />} />
       </Switch>

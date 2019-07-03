@@ -1,23 +1,25 @@
 :root {
+	color-scheme: light dark;
+	
 	--fore: black;
 	--back: white;
 
-	--r: rgb(252,70,76);
-	--o: rgb(253,138,45);
-	--y: rgb(254,204,10);
-	--g: rgb(167,211,31);
-	--c: rgb(37,220,215);
-	--b: rgb(45,148,213);
-	--p: rgb(164,75,215);
-	--k1: rgb(53,63,67);
+	--r: rgb(252, 70, 76);
+	--o: rgb(253, 138, 45);
+	--y: rgb(252, 203, 9);
+	--g: rgb(167, 211, 31);
+	--c: rgb(37, 220, 215);
+	--b: rgb(45, 148, 213);
+	--p: rgb(164, 75, 215);
+	--k1: rgb(53, 63, 67);
 	--k2: rgb(83, 99, 105);
 	--k3: rgb(173, 181, 184);
 
-	--1: rgb(253,104,60);
-	--2: rgb(253,171,28);
-	--3: rgb(211,207,20);
-	--4: rgb(104,215,120);
-	--5: rgb(41,184,214);
+	--1: rgb(253, 104, 60);
+	--2: rgb(253, 171, 28);
+	--3: rgb(211, 207, 20);
+	--4: rgb(104, 215, 120);
+	--5: rgb(41, 184, 214);
 
 	--grad-1:   linear-gradient(120deg, var(--r) 0%, var(--o) 100%);
 	--grad-2:   linear-gradient(120deg, var(--o) 0%, var(--y) 100%);
@@ -46,7 +48,7 @@
 
 		--r: rgb(202, 22, 54);
 		--o: rgb(220, 88, 1);
-		--y: rgb(212, 185, 4);
+		--y: rgb(207, 181, 67);
 		--g: rgb(111, 175, 27);
 		--c: rgb(31, 191, 186);
 		--b: rgb(65, 111, 194);
@@ -60,6 +62,22 @@
 		--4: rgb(49, 183, 68);
 		--5: rgb(37, 134, 181);
 	}
+}
+
+html.cvd {
+	--r: rgb(225, 55, 55);
+	--o: rgb(248, 157, 0);
+	--y: rgb(14, 241, 97);
+	--g: rgb(23, 191, 160);
+	--c: rgb(1, 179, 255);
+	--b: rgb(144, 32, 224);
+	--p: rgb(147, 57, 93);
+
+	--1: rgb(255, 60, 1);
+	--2: rgb(246, 215, 8);
+	--3: rgb(0, 227, 185);
+	--4: rgb(0, 162, 231);
+	--5: rgb(149, 1, 255);
 }
 
 .bg-mood-1   { background: var(--1); --shadow: var(--1); }
@@ -89,14 +107,11 @@
 .bg-subtle   { background: var(--k3); color: black; --shadow: transparent; }
 
 
-:root {
-	color-scheme: light dark;
-}
-
-
 body {
 	background: var(--back);
 	color: var(--fore);
+
+	font-family: 'Assistant', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
