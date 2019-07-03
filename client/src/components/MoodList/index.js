@@ -12,7 +12,7 @@ class MoodList extends React.Component {
     return (
       <ul className="cell-list">
         {this.props.moods && this.props.moods.map(mood => (
-          <MoodCell key={mood._id} mood={mood} titleSide={opposingSide} />
+          <MoodCell key={mood._id} mood={mood} titleSide={opposingSide} decision={this.props.decision} />
         ))}
       </ul>
     )

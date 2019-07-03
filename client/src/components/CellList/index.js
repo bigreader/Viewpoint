@@ -30,9 +30,8 @@ class CellList extends React.Component {
               bg={cell.bg}
               editing={this.state.editing}
               onClick={() => this.props.onSelect(this.props.selectFrom, cell.id)}
-              onDelete={() => {
-                this.props.connector.delete(cell.id)
-              }}>
+              onDelete={() => this.props.connector.delete(cell.id)}
+              >
               {cell.body}
             </Cell>
           ))}

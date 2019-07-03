@@ -1,19 +1,15 @@
 import React from 'react';
 import Cell from '../Cell';
-import API from '../../utils/api';
+// import API from '../../utils/api';
 // import './MoodCell.css';
 
 class MoodCell extends React.Component {
-  state = {
-    set: this.props.mood.set,
-    val: this.props.mood.val
-  }
-
+  
   render() {
     return (
       <Cell
         title={this.props.mood[this.props.titleSide].name}
-        bg={this.state.set ? 'mood-' + this.state.val : 'unknown'}
+        bg={this.props.mood.set ? 'mood-' + this.props.mood.val : 'unknown'}
         live
         onClick={() => {
           const newVal = parseInt(prompt('Enter a new mood'));
@@ -27,8 +23,7 @@ class MoodCell extends React.Component {
               val: newVal
             }
           }
-          this.setState(data);
-          API.mood.update(this.props.decisionId, this.props.mood._id, data);
+          this.props.decision.mood.update(this.props.mood._id, data);
         }} />
     );
   }

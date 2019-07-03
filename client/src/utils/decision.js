@@ -48,10 +48,10 @@ export default class Decision {
 
     if (!list) return;
 
-    const item = list.find(item => item._id === id);
+    const item = list.find(doc => doc._id === id);
     if (!item) throw new Error('Unable to find decision child with id ' + id);
 
-    item.assign(data);
+    Object.assign(item, data);
     this.changeCalls.forEach(call => call());
     return api.update(this.id, id, data);
   }

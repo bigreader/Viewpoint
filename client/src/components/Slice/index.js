@@ -20,7 +20,7 @@ export default ({ decision, selected, ...props }) => {
     <>
       <EditHead>{slice.name}</EditHead>
       {slice.img && <img className="img-fluid rounded my-3" src={slice.img} alt={decision.title} />}
-      <MoodList decisionId={decision._id} side={searchKey} moods={moods} onMoodChange={props.onMoodChange}/>
+      <MoodList decision={decision} side={searchKey} moods={moods} onMoodChange={props.onMoodChange}/>
     </>
   )
 }

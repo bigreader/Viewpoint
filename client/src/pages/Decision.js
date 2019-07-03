@@ -30,6 +30,7 @@ class DecisionPage extends React.Component {
   reloadDecision() {
     const decision = new Decision(this.props.id);
     decision.onRefresh(() => this.forceUpdate());
+    decision.onChange(() => this.forceUpdate());
     this.setState({
       decision,
       selected: {
