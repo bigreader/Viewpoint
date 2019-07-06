@@ -3,6 +3,10 @@ import Axios from "axios";
 let defaultDecision = '';
 
 export default {
+  user: {
+    me: function () { return Axios.get(`/api/users`) }
+  },
+
   decision: {
     list   : function()               { return Axios.get(   `/api/decisions`) },
     create : function(data)           { return Axios.post(  `/api/decisions`, data) },

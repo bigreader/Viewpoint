@@ -9,6 +9,7 @@ import './App.css';
 function App() {
   return (
     <Router>
+      <p>hello there!</p>
       <Switch>
         <Route exact path="/" component={UserPage} />
         <Route path="/login" component={LoginPage} />
@@ -17,8 +18,6 @@ function App() {
         <Route path="/decisions/:decision" render={props => <DecisionPage id={props.match.params.decision} />} />
       </Switch>
     </Router>
-
-    // <Decision id="brt51b1xh"/>
   );
 }
 

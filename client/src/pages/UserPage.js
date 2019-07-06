@@ -2,10 +2,22 @@ import React from 'react';
 import PageContainer from '../components/PageContainer';
 import Column from '../components/Column';
 import CellList from '../components/CellList';
+import API from '../utils/api';
 
 class UserPage extends React.Component {
   state = {
-    username: ''
+    username: '',
+    decisions: []
+  }
+
+  componentDidMount = () => {
+    API.user.me().then(res => {
+      this.setState({ username: res.data.username });
+
+      API.decision.list().then(res => {
+        this.setState({ decisions: res.data });
+      })
+    })
   }
 
   render = () => (
@@ -18,7 +30,13 @@ class UserPage extends React.Component {
         <button className="btn btn-sm btn-outline-secondary px-3">Settings</button>
       </Column>
       <Column col="md-6 lg-8">
-        <CellList list="Decisions"/>
+        <CellList list="Decisions"
+          cells={this.state.decisions.map(decision => {
+            return {
+              id: decision._id,
+              title: decision.name
+            }
+          })} />
       </Column>
     </PageContainer>
   )

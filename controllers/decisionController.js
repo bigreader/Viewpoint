@@ -10,7 +10,7 @@ function handleError(res) {
 module.exports = {
   findAll: function (req, res) {
     db.Decision
-      .find()
+      .find({ user: req.user._id })
       // .sort({ date: -1 })
       .then(doc => res.json(doc))
       .catch(handleError(res));

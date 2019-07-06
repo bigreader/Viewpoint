@@ -1,14 +1,9 @@
 const router = require("express").Router();
 const controllers = require('../controllers');
+const passport = require('passport');
 
-// router.route("/users")
-//   .get(controllers.user.findAll)
-//   .post(controllers.user.create);
-
-// router.route("/users/:user")
-//   .get(controllers.user.findOne)
-//   .put(controllers.user.update)
-//   .delete(controllers.user.remove);
+router.route("/users")
+  .get((req, res) => res.json(req.user));
 
 router.route("/decisions")
   .get(controllers.decision.findAll)

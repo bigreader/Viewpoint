@@ -20,6 +20,10 @@ const schema = new mongoose.Schema({
   moods: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Mood'
+  }],
+  user: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }]
 });
 
