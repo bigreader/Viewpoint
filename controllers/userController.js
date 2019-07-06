@@ -21,5 +21,14 @@ module.exports = {
       .findById(req.params.option)
       .then(doc => res.json(doc))
       .catch(handleError(res));
+  },
+  create: function (req, res) {
+    db.User
+      .create(req.body)
+      .then(doc => {
+        req.login(doc);
+        res.json(doc);
+      })
+      .catch(handleError(res));
   }
 };
