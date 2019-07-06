@@ -9,7 +9,6 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <p>hello there!</p>
       <Switch>
         <Route exact path="/" component={UserPage} />
         <Route path="/login" component={LoginPage} />

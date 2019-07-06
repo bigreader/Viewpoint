@@ -1,7 +1,9 @@
 const express = require("express");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
 const mongoose = require("mongoose");
+const MongoStore = require('connect-mongo')(session);
 const userController = require('./controllers').user.direct;
 
 const app = express();
@@ -28,11 +30,13 @@ passport.deserializeUser((id, back) => {
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(require('express-session')({
+app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: 'bootcamp-viewpoint',
-  // store: require('connect-mongo')
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
 }));
 app.use(passport.initialize());
 app.use(passport.session());

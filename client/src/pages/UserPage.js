@@ -3,6 +3,7 @@ import PageContainer from '../components/PageContainer';
 import Column from '../components/Column';
 import CellList from '../components/CellList';
 import API from '../utils/api';
+import { Link } from 'react-router-dom';
 
 class UserPage extends React.Component {
   state = {
@@ -20,12 +21,21 @@ class UserPage extends React.Component {
     })
   }
 
+  displayName = (str) => {
+    if (!str) return str;
+    const lowercase = str.toLowerCase();
+    if (str !== lowercase) return str;
+    let letters = lowercase.split('');
+    letters[0] = letters[0].toUpperCase();
+    return letters.join('');
+  }
+
   render = () => (
     <PageContainer>
       <Column col="md-6 lg-4" className="text-center d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '80vh' }}>
         <img src="/img/avatar.png" alt="avatar" className="rounded-circle w-50 h-auto mb-4" />
         <p className="i mb-0">Welcome,</p>
-        <h2 className="text-center">{this.state.username || 'Anonymous'}</h2>
+        <h2 className="text-center">{this.displayName(this.state.username) || 'Anonymous'}</h2>
         <p className="text-secondary">6 decisions &mdash; 126 feelings</p>
         <button className="btn btn-sm btn-outline-secondary px-3">Settings</button>
       </Column>
@@ -37,6 +47,11 @@ class UserPage extends React.Component {
               title: decision.name
             }
           })} />
+          <ul>
+            {this.state.decisions.map(decision => (
+              <li><Link to={"/decisions/" + decision._id}>{decision.name}</Link></li>
+            ))}
+          </ul>
       </Column>
     </PageContainer>
   )
