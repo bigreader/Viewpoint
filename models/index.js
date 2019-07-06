@@ -1,5 +1,5 @@
 module.exports = {
-  // User: require('./User'),
+  User: require('./User'),
   Decision: require('./Decision'),
   Option: require('./Option'),
   Factor: require('./Factor'),

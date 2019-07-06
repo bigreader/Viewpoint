@@ -1,45 +1,49 @@
 const router = require("express").Router();
-const decisionController = require("../controllers/decisionController");
-const optionController = require("../controllers/optionController");
-const factorController = require("../controllers/factorController");
-const moodController = require("../controllers/moodController");
+const controllers = require('../controllers');
+
+router.route("/users")
+  .get(controllers.user.findAll)
+  .post(controllers.user.create);
+
+router.route("/users/:user")
+  .get(controllers.user.findOne)
+  .put(controllers.user.update)
+  .delete(controllers.user.remove);
 
 router.route("/decisions")
-  .get(decisionController.findAll)
-  .post(decisionController.create);
+  .get(controllers.decision.findAll)
+  .post(controllers.decision.create);
 
 router.route("/decisions/:decision")
-  .get(decisionController.findOne)
-  .put(decisionController.update)
-  .delete(decisionController.remove);
+  .get(controllers.decision.findOne)
+  .put(controllers.decision.update)
+  .delete(controllers.decision.remove);
 
 router.route("/decisions/:decision/options")
-  .get(optionController.findAll)
-  .post(optionController.create);
+  .get(controllers.option.findAll)
+  .post(controllers.option.create);
 
 router.route("/decisions/:decision/options/:option")
-  .get(optionController.findOne)
-  .put(optionController.update)
-  .delete(optionController.remove);
+  .get(controllers.option.findOne)
+  .put(controllers.option.update)
+  .delete(controllers.option.remove);
 
 router.route("/decisions/:decision/factors")
-  .get(factorController.findAll)
-  .post(factorController.create);
+  .get(controllers.factor.findAll)
+  .post(controllers.factor.create);
 
 router.route("/decisions/:decision/factors/:factor")
-  .get(factorController.findOne)
-  .put(factorController.update)
-  .delete(factorController.remove);
+  .get(controllers.factor.findOne)
+  .put(controllers.factor.update)
+  .delete(controllers.factor.remove);
 
 router.route("/decisions/:decision/moods")
-  .get(moodController.findAll);
-  // .post(moodController.create);
+  .get(controllers.mood.findAll);
+  // .post(controllers.mood.create);
 
 router.route("/decisions/:decision/moods/:mood")
-  .get(moodController.findOne)
-  .put(moodController.update);
-  // .delete(moodController.remove);
-
-// "/decisions/:decision/moods/:option/:factor"
+  .get(controllers.mood.findOne)
+  .put(controllers.mood.update);
+  // .delete(controllers.mood.remove);
 
 module.exports = router;
