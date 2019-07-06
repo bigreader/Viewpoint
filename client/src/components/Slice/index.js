@@ -1,14 +1,14 @@
 import React from 'react';
 import EditHead from '../EditHead';
 import MoodList from '../MoodList';
+import Placeholder from '../Placeholder';
 
 export default ({ decision, selected, ...props }) => {
   if (!decision || !selected.id) {
     return (
-      <>
-        <EditHead editable={false}>{decision.name}</EditHead>
-        <i className="ml-3">Select an option or factor to start.</i>
-      </>
+      <Placeholder>
+        Select an option or factor to start.
+      </Placeholder>
     )
   }
 
@@ -20,7 +20,7 @@ export default ({ decision, selected, ...props }) => {
     <>
       <EditHead>{slice.name}</EditHead>
       {slice.img && <img className="img-fluid rounded my-3" src={slice.img} alt={decision.title} />}
-      <MoodList decision={decision} side={searchKey} moods={moods} onMoodChange={props.onMoodChange}/>
+      <MoodList decision={decision} side={searchKey} moods={moods} onMoodChange={props.onMoodChange} />
     </>
   )
 }
