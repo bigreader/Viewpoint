@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const controllers = require('../controllers');
 
-router.route("/users")
-  .get(controllers.user.findAll)
-  .post(controllers.user.create);
+// router.route("/users")
+//   .get(controllers.user.findAll)
+//   .post(controllers.user.create);
 
-router.route("/users/:user")
-  .get(controllers.user.findOne)
-  .put(controllers.user.update)
-  .delete(controllers.user.remove);
+// router.route("/users/:user")
+//   .get(controllers.user.findOne)
+//   .put(controllers.user.update)
+//   .delete(controllers.user.remove);
 
 router.route("/decisions")
   .get(controllers.decision.findAll)
