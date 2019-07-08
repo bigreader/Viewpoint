@@ -4,28 +4,14 @@ const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo')(session);
-const userController = require('./controllers').user.direct;
+const Auth = require('./utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-passport.use(new LocalStrategy(function(username, password, back) {
-  userController.findByUsername(username)
-  .then(user => {
-    if (!user) return back(null, false);
-    if (user.password !== password) return back(null, false);
-    return back(null, user);
-  })
-  .catch(back);
-}));
-
-passport.serializeUser((user, back) => back(null, user._id));
-passport.deserializeUser((id, back) => {
-  userController.findById(id)
-  .then(user => back(null, user))
-  .catch(back);
-});
-
+passport.use(new LocalStrategy(Auth.verify));
+passport.serializeUser(Auth.serialize);
+passport.deserializeUser(Auth.deserialize);
 
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: true }));

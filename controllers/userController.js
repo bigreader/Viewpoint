@@ -1,4 +1,5 @@
 const db = require("../models");
+const Auth = require('../utils/auth.js');
 
 function handleError(res) {
   return err => {
@@ -22,9 +23,12 @@ module.exports = {
       .then(doc => res.json(doc))
       .catch(handleError(res));
   },
-  create: function (req, res) {
+  create: async function (req, res) {
     db.User
-      .create(req.body)
+      .create({
+        username: req.body.username,
+        password: await Auth.hash(req.body.password)
+      })
       .then(doc => {
         res.json(doc);
       })
