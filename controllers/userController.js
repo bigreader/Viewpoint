@@ -26,7 +26,6 @@ module.exports = {
     db.User
       .create(req.body)
       .then(doc => {
-        req.login(doc);
         res.json(doc);
       })
       .catch(handleError(res));

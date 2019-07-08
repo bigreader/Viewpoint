@@ -1,4 +1,5 @@
 import React from 'react';
+import './Column.css';
 
 export default props => {
   const cols = props.col.split(' ').map(str => 'col-' + str).join(' ');
