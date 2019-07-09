@@ -34,12 +34,10 @@ class Navbar extends React.Component {
             </a>
             <div className="dropdown-menu">
               {this.state.decisions.map((decision, i) => {
-                // let className = 'dropdown-item';
-                // if (this.props.current && decision._id === this.props.current._id) className += ' active';
                 return <NavLink key={decision._id} className="dropdown-item" to={'/decisions/' + decision._id}>{decision.name}</NavLink>;
               })}
               <div className="dropdown-divider"></div>
-              <Link to="/decisions/add" className="dropdown-item">New decision...</Link>
+              <Link to="/dashboard" className="dropdown-item">All decisions...</Link>
             </div>
           </div>}
         <div className="nav-item dropdown">
