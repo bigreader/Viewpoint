@@ -7,7 +7,23 @@ const moodSummaries = [
   'Very Positive'
 ];
 
-export default {
+const Calc = {
+  slices: {
+    sort: function(decision, side) {
+      return decision[side].slice().sort((a, b) => decision.average(a) - decision.average(b));
+    },
+
+    best: function(decision, side) {
+      const best = decision[side].reduce((acc, slice) => {
+        const score = decision.average(slice);
+        if (score > acc.score) return { score, results: [slice] };
+        if (score === acc.score) return { score, results: acc.results.concat([slice]) };
+        return acc;
+      }, { score: 0, results: [] });
+      return best;
+    }
+  },
+
   moods: {
     average: function (moods = []) {
       const validMoods = moods.filter(mood => mood.set);
@@ -30,3 +46,5 @@ export default {
     }
   }
 }
+
+export default Calc;

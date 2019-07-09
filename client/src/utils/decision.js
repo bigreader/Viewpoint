@@ -1,4 +1,6 @@
 import API from './api';
+import insightTemplates from './insights';
+import Calc from './calc';
 // import Calc from './calc';
 
 export default class Decision {
@@ -67,24 +69,34 @@ export default class Decision {
     return api.delete(this.id, id).then(this.refresh);
   }
 
-  option = {
-    create: (data) => this.create(this.options, API.option, data),
-    update: (id, data) => this.update(this.options, API.option, id, data),
-    delete: (id) => this.delete(this.options, API.option, id)
+  apis = {
+    option: {
+      create: (data) => this.create(this.options, API.option, data),
+      update: (id, data) => this.update(this.options, API.option, id, data),
+      delete: (id) => this.delete(this.options, API.option, id)
+    },
+    factor: {
+      create: (data) => this.create(this.factors, API.factor, data),
+      update: (id, data) => this.update(this.factors, API.factor, id, data),
+      delete: (id) => this.delete(this.factors, API.factor, id)
+    },
+    mood: {
+      update: (id, data) => this.update(this.moods, API.mood, id, data)
+    }
   }
 
-  factor = {
-    create: (data) => this.create(this.factors, API.factor, data),
-    update: (id, data) => this.update(this.factors, API.factor, id, data),
-    delete: (id) => this.delete(this.factors, API.factor, id)
+  slice = (sliceObj) => {
+    return this.moods.filter(mood => mood.option._id === sliceObj._id || mood.factor._id === sliceObj._id);
   }
 
-  mood = {
-    update: (id, data) => this.update(this.moods, API.mood, id, data)
+  average = (sliceObj) => {
+    return Calc.moods.average(this.slice(sliceObj));
   }
 
 
-  refreshCalls = [];
+  refreshCalls = [
+    () => this.insights = null
+  ];
   onRefresh(call) {
     this.refreshCalls.push(call);
   }
@@ -93,7 +105,9 @@ export default class Decision {
     this.refreshCalls.splice(this.refreshCalls.findIndex(call), 1);
   }
 
-  changeCalls = [];
+  changeCalls = [
+    () => this.insights = null
+  ];
   onChange(call) {
     this.changeCalls.push(call);
   }
@@ -102,4 +116,19 @@ export default class Decision {
     this.changeCalls.splice(this.changeCalls.findIndex(call), 1);
   }
 
+
+  insights = null;
+
+  getInsights = () => {
+    if (this.insights) return this.insights;
+
+    this.insights = [];
+    insightTemplates.forEach(template => {
+      const result = template(this);
+      if (result) this.insights = this.insights.concat(result);
+    });
+    this.insights = this.insights.sort((a, b) => a.order - b.order);
+
+    return this.insights;
+  }
 }

@@ -23,7 +23,7 @@ class MoodCell extends React.Component {
               val: newVal
             }
           }
-          this.props.decision.mood.update(this.props.mood._id, data);
+          this.props.decision.apis.mood.update(this.props.mood._id, data);
         }} />
     );
   }

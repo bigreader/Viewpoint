@@ -60,10 +60,11 @@ class DecisionPage extends React.Component {
       <>
         <Navbar showDecisions={true} current={this.state.decision} bg={Calc.moods.bg(this.state.decision.moods)} />
 
+        
         <div className="container-fluid my-3 my-xl-5 px-xl-5">
           <div className="row">
             <div className="col-md-5 col-lg-3">
-              <CellList list="Options" decision={this.state.decision} api={this.state.decision.option}
+              <CellList list="Options" decision={this.state.decision} api={this.state.decision.apis.option}
                 selectFrom="options" onSelect={this.selectSlice} selected={this.state.selected}
                 cells={this.state.decision.options.map(option => {
                   const moods = this.state.decision.moods.filter(mood => mood.option._id === option._id);
@@ -75,7 +76,7 @@ class DecisionPage extends React.Component {
                   }
                 })} />
               <hr />
-              <CellList list="Factors" decision={this.state.decision} api={this.state.decision.factor}
+              <CellList list="Factors" decision={this.state.decision} api={this.state.decision.apis.factor}
                 selectFrom="factors" onSelect={this.selectSlice} selected={this.state.selected}
                 cells={this.state.decision.factors.map(factor => {
                   const moods = this.state.decision.moods.filter(mood => mood.factor._id === factor._id);
@@ -95,7 +96,7 @@ class DecisionPage extends React.Component {
             </div>
 
             <div className="col-lg-4 col-xl-3">
-              <CellList list="Insights" editable={false}>
+              <CellList list="Insights" editable={false} cells={this.state.decision.getInsights()}>
                 <Cell title="Schedule" bg="mostly-p">
                   It's close, but <b>Alaska</b> looks like the best choice.
                 </Cell>
