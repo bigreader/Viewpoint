@@ -30,31 +30,32 @@ class UserPage extends React.Component {
     return letters.join('');
   }
 
-  render = () => (
-    <PageContainer>
-      <Column col="md-6 lg-4" className="text-center d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '80vh' }}>
-        <img src="/img/avatar.png" alt="avatar" className="rounded-circle w-50 h-auto mb-4" />
-        <p className="i mb-0">Welcome,</p>
-        <h2 className="text-center">{this.displayName(this.state.username) || 'Anonymous'}</h2>
-        <p className="text-secondary">6 decisions &mdash; 126 feelings</p>
-        <button className="btn btn-sm btn-outline-secondary px-3">Settings</button>
-      </Column>
-      <Column col="md-6 lg-8">
-        <CellList list="Decisions"
-          cells={this.state.decisions.map(decision => {
-            return {
-              id: decision._id,
-              title: decision.name
-            }
-          })} />
-          <ul>
-            {this.state.decisions.map(decision => (
-              <li><Link to={"/decisions/" + decision._id}>{decision.name}</Link></li>
-            ))}
-          </ul>
-      </Column>
-    </PageContainer>
-  )
+  render = () => {
+    const decisionCount = this.state.decisions.length;
+    const moodCount = this.state.decisions.reduce((acc, decision) => acc + decision.moods.length, 0);
+
+    return (
+      <PageContainer>
+        <Column col="md-6 lg-4" className="text-center d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '80vh' }}>
+          <img src="/img/avatar.png" alt="avatar" className="rounded-circle w-50 h-auto mb-4" />
+          <p className="i mb-0">Welcome,</p>
+          <h2 className="text-center">{this.displayName(this.state.username) || 'Anonymous'}</h2>
+          <p className="text-secondary">{decisionCount} decisions &mdash; {moodCount} feelings</p>
+          <button className="btn btn-sm btn-outline-secondary px-3">Settings</button>
+        </Column>
+        <Column col="md-6 lg-8">
+          <CellList grid list="Decisions" api={API.decision}
+            cells={this.state.decisions.map(decision => {
+              return {
+                id: decision._id,
+                title: decision.name,
+                link: '/decisions/' + decision._id
+              }
+            })} />
+        </Column>
+      </PageContainer>
+    );
+  }
 }
 
 export default UserPage;

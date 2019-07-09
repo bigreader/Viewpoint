@@ -21,10 +21,10 @@ const schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Mood'
   }],
-  user: [{
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }]
+  }
 });
 
 var model = mongoose.model('Decision', schema);

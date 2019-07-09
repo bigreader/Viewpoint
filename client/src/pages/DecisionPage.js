@@ -64,7 +64,7 @@ class DecisionPage extends React.Component {
         <div className="container-fluid my-3 my-xl-5 px-xl-5">
           <div className="row">
             <div className="col-md-5 col-lg-3">
-              <CellList list="Options" api={API.option} decision={this.state.decision} connector={this.state.decision.option}
+              <CellList list="Options" decision={this.state.decision} api={this.state.decision.option}
                 selectFrom="options" onSelect={this.selectSlice} selected={this.state.selected}
                 cells={this.state.decision.options.map(option => {
                   const moods = this.state.decision.moods.filter(mood => mood.option._id === option._id);
@@ -76,7 +76,7 @@ class DecisionPage extends React.Component {
                   }
                 })} />
               <hr />
-              <CellList list="Factors" api={API.factor} decision={this.state.decision} connector={this.state.decision.factor}
+              <CellList list="Factors" decision={this.state.decision} api={this.state.decision.factor}
                 selectFrom="factors" onSelect={this.selectSlice} selected={this.state.selected}
                 cells={this.state.decision.factors.map(factor => {
                   const moods = this.state.decision.moods.filter(mood => mood.factor._id === factor._id);

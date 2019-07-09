@@ -27,8 +27,10 @@ module.exports = {
       .catch(handleError(res));
   },
   create: function (req, res) {
+    const data = req.body;
+    data.user = req.user._id;
     db.Decision
-      .create(req.body)
+      .create(data)
       .then(doc => res.json(doc))
       .catch(handleError(res));
   },
