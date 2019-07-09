@@ -15,7 +15,7 @@ export default (props) => {
 
   return (
     <li className={'bg-' + (props.bg || 'unknown') + (props.active ? ' active' : '')}>
-      {props.link ? <Link to={props.link}>{contents}</Link> : contents}
+      {(props.link && !props.editing) ? <Link to={props.link}>{contents}</Link> : contents}
     </li>
   );
 }

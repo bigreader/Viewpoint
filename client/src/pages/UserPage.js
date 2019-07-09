@@ -3,12 +3,13 @@ import PageContainer from '../components/PageContainer';
 import Column from '../components/Column';
 import CellList from '../components/CellList';
 import API from '../utils/api';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class UserPage extends React.Component {
   state = {
     username: '',
-    decisions: []
+    decisions: [],
+    redirect: null
   }
 
   componentDidMount = () => {
@@ -30,12 +31,30 @@ class UserPage extends React.Component {
     return letters.join('');
   }
 
+  handleCreate = data => {
+    return API.decision.create(data).then(res => {
+      this.setState({
+        decisions: this.state.decisions.concat([res.data]),
+        redirect: '/decisions/' + res.data._id
+      });
+    }).catch(console.log);
+  }
+
+  handleDelete = id => {
+    return API.decision.delete(id).then(res => {
+      this.setState({
+        decisions: this.state.decisions.filter(d => d._id !== id)
+      });
+    }).catch(console.log);
+  }
+
   render = () => {
     const decisionCount = this.state.decisions.length;
     const moodCount = this.state.decisions.reduce((acc, decision) => acc + decision.moods.length, 0);
 
     return (
       <PageContainer>
+        {this.state.redirect && <Redirect to={this.state.redirect} />}
         <Column col="md-6 lg-4" className="text-center d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '80vh' }}>
           <img src="/img/avatar.png" alt="avatar" className="rounded-circle w-50 h-auto mb-4" />
           <p className="i mb-0">Welcome,</p>
@@ -44,7 +63,11 @@ class UserPage extends React.Component {
           <button className="btn btn-sm btn-outline-secondary px-3">Settings</button>
         </Column>
         <Column col="md-6 lg-8">
-          <CellList grid list="Decisions" api={API.decision}
+          <CellList grid list="Decisions"
+            api={{
+              create: this.handleCreate,
+              delete: this.handleDelete
+            }}
             cells={this.state.decisions.map(decision => {
               return {
                 id: decision._id,
