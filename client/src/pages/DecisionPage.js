@@ -1,10 +1,12 @@
 import React from 'react';
-import Cell from '../components/Cell';
 import CellList from '../components/CellList';
 import Navbar from '../components/Navbar';
 import Slice from '../components/Slice';
 import Calc from '../utils/calc';
 import Decision from '../utils/decision';
+import PageContainer from '../components/PageContainer';
+import Column from '../components/Column';
+import Placeholder from '../components/Placeholder';
 
 class DecisionPage extends React.Component {
   state = {
@@ -25,7 +27,7 @@ class DecisionPage extends React.Component {
       this.reloadDecision();
     }
   }
-  
+
   reloadDecision() {
     const decision = new Decision(this.props.id);
     decision.onRefresh(() => this.forceUpdate());
@@ -50,8 +52,20 @@ class DecisionPage extends React.Component {
     if (!this.state.decision || !this.state.decision.data) {
       return (
         <>
-          <Navbar showDecisions={true} />
-          <p>Loading...</p>
+          <Navbar showDecisions={true} bg="grad-3" />
+          <PageContainer navbar={false}>
+            <Column col="md-5 lg-3">
+              <CellList list="Options" />
+            </Column>
+
+            <Column col="md-7 lg-5 xl-6" className="px-xl-5">
+              <Placeholder>Loading...</Placeholder>
+            </Column>
+
+            <Column col="lg-4 xl-3">
+              <CellList list="Insights" />
+            </Column>
+          </PageContainer>
         </>
       )
     }
@@ -60,63 +74,43 @@ class DecisionPage extends React.Component {
       <>
         <Navbar showDecisions={true} current={this.state.decision} bg={Calc.moods.bg(this.state.decision.moods)} />
 
-        
-        <div className="container-fluid my-3 my-xl-5 px-xl-5">
-          <div className="row">
-            <div className="col-md-5 col-lg-3">
-              <CellList list="Options" decision={this.state.decision} api={this.state.decision.apis.option}
-                selectFrom="options" onSelect={this.selectSlice} selected={this.state.selected}
-                cells={this.state.decision.options.map(option => {
-                  const moods = this.state.decision.moods.filter(mood => mood.option._id === option._id);
-                  return {
-                    id: option._id,
-                    title: option.name,
-                    status: Calc.moods.summary(moods),
-                    bg: Calc.moods.bg(moods)
-                  }
-                })} />
-              <hr />
-              <CellList list="Factors" decision={this.state.decision} api={this.state.decision.apis.factor}
-                selectFrom="factors" onSelect={this.selectSlice} selected={this.state.selected}
-                cells={this.state.decision.factors.map(factor => {
-                  const moods = this.state.decision.moods.filter(mood => mood.factor._id === factor._id);
-                  return {
-                    id: factor._id,
-                    title: factor.name,
-                    status: Calc.moods.summary(moods),
-                    bg: Calc.moods.bg(moods)
-                  }
-                })} />
-            </div>
+        <PageContainer navbar={false}>
+          <Column col="md-5 lg-3">
+            <CellList list="Options" decision={this.state.decision} api={this.state.decision.apis.option}
+              selectFrom="options" onSelect={this.selectSlice} selected={this.state.selected}
+              cells={this.state.decision.options.map(option => {
+                const moods = this.state.decision.moods.filter(mood => mood.option._id === option._id);
+                return {
+                  id: option._id,
+                  title: option.name,
+                  status: Calc.moods.summary(moods),
+                  bg: Calc.moods.bg(moods)
+                }
+              })} />
+            <hr />
+            <CellList list="Factors" decision={this.state.decision} api={this.state.decision.apis.factor}
+              selectFrom="factors" onSelect={this.selectSlice} selected={this.state.selected}
+              cells={this.state.decision.factors.map(factor => {
+                const moods = this.state.decision.moods.filter(mood => mood.factor._id === factor._id);
+                return {
+                  id: factor._id,
+                  title: factor.name,
+                  status: Calc.moods.summary(moods),
+                  bg: Calc.moods.bg(moods)
+                }
+              })} />
+          </Column>
 
-            <div className="col-md-7 col-lg-5 col-xl-6 px-xl-5">
-              <Slice decision={this.state.decision} selected={this.state.selected} onChangeMood={(id, data) => {
-                this.state.decision.moods.find(mood => mood._id === id).assign(data)
-              }}/>
-            </div>
+          <Column col="md-7 lg-5 xl-6" className="px-xl-5">
+            <Slice decision={this.state.decision} selected={this.state.selected} onChangeMood={(id, data) => {
+              this.state.decision.moods.find(mood => mood._id === id).assign(data)
+            }} />
+          </Column>
 
-            <div className="col-lg-4 col-xl-3">
-              <CellList list="Insights" editable={false} cells={this.state.decision.getInsights()}>
-                <Cell title="Schedule" bg="mostly-p">
-                  It's close, but <b>Alaska</b> looks like the best choice.
-                </Cell>
-                <Cell title="Yellowstone" bg="mostly-n">
-                  You've got better options than this one in each of your factors.
-                </Cell>
-                <Cell title="Scenery" bg="grad-5">
-                  Every option looks good for this factor.
-                </Cell>
-                <Cell title="Iceland &amp; Alaska" bg="grad-3">
-                  You feel similar ways about both of these options. Adding more factors might help you decide.
-                </Cell>
-                <Cell title="Alaska" bg="prob-p">
-                  You haven't added feelings on <b>Schedule</b> yet.
-                </Cell>
-                <Cell title="42 days left" status="July 31, 2019" bg="grad-1" />
-              </CellList>
-            </div>
-          </div>
-        </div>
+          <Column col="lg-4 xl-3">
+            <CellList list="Insights" editable={false} cells={this.state.decision.getInsights()} />
+          </Column>
+        </PageContainer>
       </>
     );
   }

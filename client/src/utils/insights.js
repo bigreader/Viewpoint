@@ -83,3 +83,24 @@ export default [
     return out;
   }
 ];
+
+
+/*
+Schedule
+It's close, but *Alaska* looks like the best choice.
+
+Yellowstone
+You've got better options than this one in each of your factors.
+
+Scenery
+Every option looks good for this factor.
+
+Iceland & Alaska
+You feel similar ways about both of these options. Adding more factors might help you decide.
+
+Alaska
+You haven't added feelings on *Schedule* yet.
+
+42 days left
+July 31, 2019
+*/
