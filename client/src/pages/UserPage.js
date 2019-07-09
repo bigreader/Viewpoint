@@ -3,7 +3,7 @@ import PageContainer from '../components/PageContainer';
 import Column from '../components/Column';
 import CellList from '../components/CellList';
 import API from '../utils/api';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class UserPage extends React.Component {
   state = {

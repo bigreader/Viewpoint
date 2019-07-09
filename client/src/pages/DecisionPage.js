@@ -3,7 +3,6 @@ import Cell from '../components/Cell';
 import CellList from '../components/CellList';
 import Navbar from '../components/Navbar';
 import Slice from '../components/Slice';
-import API from '../utils/api';
 import Calc from '../utils/calc';
 import Decision from '../utils/decision';
 
