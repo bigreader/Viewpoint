@@ -102,7 +102,7 @@ html.cvd {
 .bg-elim-n   { background: var(--elim-n); --shadow: var(--k2); }
 
 .bg-unknown  { background: var(--unknown); --shadow: var(--k3); }
-.bg-subtle   { background: var(--k3); color: black; --shadow: transparent; }
+.bg-subtle   { background: var(--k3); --shadow: transparent; }
 
 
 body {

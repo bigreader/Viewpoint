@@ -88,7 +88,9 @@ export default class Decision {
   slice = (sliceObj) => {
     return this.moods.filter(mood => mood.option._id === sliceObj._id || mood.factor._id === sliceObj._id);
   }
-
+  intersect = (option, factor) => {
+    return this.moods.filter(mood => mood.option._id === option._id && mood.factor._id === factor._id)[0];
+  }
   average = (sliceObj) => {
     return Calc.moods.average(this.slice(sliceObj));
   }

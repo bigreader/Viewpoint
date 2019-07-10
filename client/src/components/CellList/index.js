@@ -22,7 +22,7 @@ class CellList extends React.Component {
         <ul id={'list-' + this.props.list.toLowerCase()} className={'cell-list' + (this.props.grid ? ' cell-grid' : '')}>
           {!this.props.cells ? this.props.children : this.props.cells.map(cell => (
             <Cell
-              key={cell.id}
+              key={cell.id || cell.key || Math.random()}
               live={this.props.selectFrom || cell.link}
               active={this.props.selectFrom && this.isActive(cell.id)}
               link={cell.link}

@@ -17,7 +17,7 @@ const Calc = {
       const best = decision[side].reduce((acc, slice) => {
         const score = decision.average(slice);
         if (score > acc.score) return { score, results: [slice] };
-        if (score === acc.score) return { score, results: acc.results.concat([slice]) };
+        if (score === acc.score) acc.results.push(slice);
         return acc;
       }, { score: 0, results: [] });
       return best;
