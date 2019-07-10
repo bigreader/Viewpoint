@@ -57,7 +57,9 @@ const Calc = {
     },
 
     summary: function (moods) {
-      return (moodSummaries[Math.round(this.average(moods) / 5 * 9 - 1)] || 'Unknown') + ' • ' + (Math.round(this.average(moods) * 10) / 10);
+      const avg = this.average(moods);
+      if (avg < 0) return 'Undecided';
+      return (moodSummaries[Math.round(avg / 5 * 9 - 1)] || 'Unknown') + ' • ' + (Math.round(this.average(moods) * 10) / 10);
     },
 
     bg: function (moods, decision) {

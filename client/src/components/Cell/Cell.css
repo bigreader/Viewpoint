@@ -20,7 +20,8 @@ li:hover .selectable {
 	border-width: 0.15rem;
 }
 
-.cell-list li * {
+.cell-list li h3,
+.cell-list li p {
 	margin: 0;
 }
 

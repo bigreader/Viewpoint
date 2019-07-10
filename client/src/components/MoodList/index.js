@@ -10,9 +10,9 @@ class MoodList extends React.Component {
   render() {
     const opposingSide = this.props.side === 'option' ? 'factor' : 'option';
     return (
-      <ul className="cell-list">
+      <ul className="cell-list mood-list">
         {this.props.moods && this.props.moods.map(mood => (
-          <MoodCell key={mood._id} mood={mood} titleSide={opposingSide} decision={this.props.decision} />
+          <MoodCell key={mood._id} mood={mood} titleSide={opposingSide} api={this.props.decision.apis.mood} />
         ))}
       </ul>
     )
