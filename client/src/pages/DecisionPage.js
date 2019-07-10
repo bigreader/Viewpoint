@@ -72,7 +72,7 @@ class DecisionPage extends React.Component {
 
     return (
       <>
-        <Navbar showDecisions={true} current={this.state.decision} bg={Calc.moods.bg(this.state.decision.moods)} />
+        <Navbar showDecisions={true} current={this.state.decision} />
 
         <PageContainer navbar={false}>
           <Column col="md-5 lg-3">
@@ -84,7 +84,7 @@ class DecisionPage extends React.Component {
                   id: option._id,
                   title: option.name,
                   status: Calc.moods.summary(moods),
-                  bg: Calc.moods.bg(moods)
+                  bg: Calc.moods.bg(moods, this.state.decision)
                 }
               })} />
             <hr />
@@ -96,7 +96,7 @@ class DecisionPage extends React.Component {
                   id: factor._id,
                   title: factor.name,
                   status: Calc.moods.summary(moods),
-                  bg: Calc.moods.bg(moods)
+                  bg: Calc.moods.bg(moods, this.state.decision)
                 }
               })} />
           </Column>

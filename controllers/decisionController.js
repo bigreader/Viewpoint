@@ -11,6 +11,11 @@ module.exports = {
   findAll: function (req, res) {
     db.Decision
       .find({ user: req.user._id })
+      .populate('options')
+      .populate({
+        path: 'moods',
+        populate: 'option'
+      })
       // .sort({ date: -1 })
       .then(doc => res.json(doc))
       .catch(handleError(res));

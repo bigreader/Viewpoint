@@ -4,6 +4,7 @@ import Column from '../components/Column';
 import CellList from '../components/CellList';
 import API from '../utils/api';
 import { Redirect } from 'react-router-dom';
+import Decision from '../utils/decision';
 
 class UserPage extends React.Component {
   state = {
@@ -17,7 +18,7 @@ class UserPage extends React.Component {
       this.setState({ username: res.data.username });
 
       API.decision.list().then(res => {
-        this.setState({ decisions: res.data });
+        this.setState({ decisions: res.data.map(obj => new Decision(obj)) });
       })
     })
   }
@@ -34,7 +35,7 @@ class UserPage extends React.Component {
   handleCreate = data => {
     return API.decision.create(data).then(res => {
       this.setState({
-        decisions: this.state.decisions.concat([res.data]),
+        // decisions: this.state.decisions.concat([res.data]),
         redirect: '/decisions/' + res.data._id
       });
     }).catch(console.log);
@@ -43,7 +44,7 @@ class UserPage extends React.Component {
   handleDelete = id => {
     return API.decision.delete(id).then(res => {
       this.setState({
-        decisions: this.state.decisions.filter(d => d._id !== id)
+        decisions: this.state.decisions.filter(d => d.id !== id)
       });
     }).catch(console.log);
   }
@@ -70,9 +71,10 @@ class UserPage extends React.Component {
             }}
             cells={this.state.decisions.map(decision => {
               return {
-                id: decision._id,
+                id: decision.id,
                 title: decision.name,
-                link: '/decisions/' + decision._id
+                link: '/decisions/' + decision.id,
+                bg: decision.bg()
               }
             })} />
         </Column>

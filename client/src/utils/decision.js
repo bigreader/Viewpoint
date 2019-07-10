@@ -86,13 +86,20 @@ export default class Decision {
   }
 
   slice = (sliceObj) => {
-    return this.moods.filter(mood => mood.option._id === sliceObj._id || mood.factor._id === sliceObj._id);
+    const id = sliceObj._id;
+    return this.moods.filter(mood => mood.option._id === id || mood.factor._id === id);
   }
   intersect = (option, factor) => {
     return this.moods.filter(mood => mood.option._id === option._id && mood.factor._id === factor._id)[0];
   }
   average = (sliceObj) => {
     return Calc.moods.average(this.slice(sliceObj));
+  }
+  bg = () => {
+    const sorted = Calc.slices.sort(this, 'options');
+    const slice = sorted[1] || sorted[0];
+    if (!slice) return 'unknown';
+    return Calc.moods.bg(this.slice(slice), this);
   }
 
 

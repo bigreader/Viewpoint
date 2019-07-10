@@ -25,8 +25,8 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className={'navbar navbar-dark font-weight-bold justify-content-between bg-' + (this.props.bg || 'prob-p')}>
-        <Link className="navbar-brand" to="/"><img src="/img/logo.svg" alt=""/> Viewpoint</Link>
+      <nav className={'navbar navbar-dark font-weight-bold justify-content-between bg-' + (this.props.bg || (this.props.current && this.props.current.bg()) || 'prob-p')}>
+        <Link className="navbar-brand" to="/dashboard"><img src="/img/logo.svg" alt=""/> Viewpoint</Link>
         {this.state.decisions &&
           <div className="nav-item dropdown" style={{ fontSize: '1.5em', lineHeight: '1em' }}>
             <a className="nav-link text-white dropdown-toggle" href="/decisions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

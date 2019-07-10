@@ -106,7 +106,7 @@ export default [
     const { results, score } = Calc.slices.best(decision, 'options');
     if (results.length === 0) return false; // no slices with scores
 
-    const sorted = Calc.slices.sort(decision, 'options').reverse();
+    const sorted = Calc.slices.sort(decision, 'options');
     sorted.splice(0, results.length);
     if (sorted.length === 0) return {
       title: 'No Best',
