@@ -45,7 +45,7 @@ class Navbar extends React.Component {
             Account
             </a>
           <div className="dropdown-menu">
-            <a className="dropdown-item" href="add">Sign out</a>
+            <Link to="/" className="dropdown-item">Sign out</Link>
           </div>
         </div>
       </nav>

@@ -16,15 +16,16 @@ class LoginPage extends React.Component {
   handleChange = ({ target }) => this.setState({ [target.name]: target.value, confirmFailed: false });
 
   render = () => {
-    if (this.state.loggedIn) return <Redirect to="/" />
+    if (this.state.loggedIn) return <Redirect to="/dashboard" />
 
     return (
       <PageContainer navbar={false} margins={false}>
-        <Column col="md-4" className="max-height-md bg-mostly-p">
-
+        <Column col="md-4" className="max-height-md bg-prob-p d-flex justify-content-center align-items-center">
+          <img src="/img/logo.svg" alt="logo" className="w-50 h-auto my-3" />
         </Column>
 
         <Column col="md-8 lg-6 xl-4" className="mx-auto max-height-md d-flex flex-column justify-content-center align-items-center">
+          <h3 className="w-100 pl-2 mt-5">Welcome to Viewpoint</h3>
           <form className="w-100 m-3">
             <input type="username" className="form-control mb-3" name="username" placeholder="Username" onChange={this.handleChange} />
             <div className="form-group d-flex mb-0">
