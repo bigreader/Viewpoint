@@ -1,13 +1,26 @@
 
 const moodSummaries = [
+  'Masochistic',
+  'Abysmal',
+  'Abominable',
   'Terrible',
+  'Dire',
+  'Awful',
+  'Grim',
   'Bad',
+  'Unfortunate',
+  'Tough',
   'Poor',
+  'Lacking',
   'Mixed',
   'Okay',
   'Good',
   'Great',
-  'Outstanding'
+  'Excellent',
+  'Outstanding',
+  'Fantastic',
+  'Incredible',
+  'Perfect'
 ];
 
 const Calc = {
@@ -59,7 +72,7 @@ const Calc = {
     summary: function (moods) {
       const avg = this.average(moods);
       if (avg < 0) return 'Undecided';
-      return moodSummaries[Math.round(avg / 5 * 9 - 1)] || 'Unknown';
+      return moodSummaries[Math.round(avg / 5 * moodSummaries.length - 1)] || 'Unknown';
     },
 
     bg: function (moods, decision) {

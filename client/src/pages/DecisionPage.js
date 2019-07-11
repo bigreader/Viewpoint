@@ -92,10 +92,11 @@ class DecisionPage extends React.Component {
               selectFrom="factors" onSelect={this.selectSlice} selected={this.state.selected}
               cells={this.state.decision.factors.map(factor => {
                 const moods = this.state.decision.moods.filter(mood => mood.factor._id === factor._id);
+                const good = moods.filter(mood => mood.val > 3).length
                 return {
                   id: factor._id,
                   title: factor.name,
-                  status: Calc.moods.summary(moods),
+                  status: (good || 'No') + ' good option' + (good === 1 ? '' : 's'),
                   bg: Calc.moods.bg(moods, this.state.decision)
                 }
               })} />
