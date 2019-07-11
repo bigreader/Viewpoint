@@ -61,7 +61,6 @@ class UserPage extends React.Component {
           <p className="i mb-0">Welcome,</p>
           <h2 className="text-center">{this.displayName(this.state.username) || 'Anonymous'}</h2>
           <p className="text-secondary">{decisionCount} decisions &mdash; {moodCount} feelings</p>
-          <button className="btn btn-sm btn-outline-secondary px-3">Settings</button>
         </Column>
         <Column col="md-6 lg-8">
           <CellList grid list="Decisions"

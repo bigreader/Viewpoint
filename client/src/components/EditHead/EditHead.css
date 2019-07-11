@@ -9,4 +9,6 @@
 	align-self: flex-end;
 	position: relative;
 	bottom: 0.6rem;
+	border-radius: 50rem;
+	padding: 0.25em 0.75em;
 }

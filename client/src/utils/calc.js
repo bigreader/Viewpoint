@@ -6,20 +6,40 @@ const moodSummaries = [
   'Terrible',
   'Dire',
   'Awful',
+  'Yikes',
   'Grim',
   'Bad',
+  'Oof',
   'Unfortunate',
-  'Tough',
   'Poor',
   'Lacking',
-  'Mixed',
+  'Mediocre',
+  'Passable',
+  'Fair',
+  'Reasonable',
   'Okay',
+  'Alright',
+  'Acceptable',
+  'Middling',
+  'Decent',
+  'Satisfactory',
   'Good',
+  'Respectable',
   'Great',
+  'Admirable',
+  'Awesome',
+  'Remarkable',
+  'Superb',
+  'Impressive',
   'Excellent',
+  'Brilliant',
   'Outstanding',
   'Fantastic',
+  'Wonderful',
+  'Astonishing',
+  'Fabulous',
   'Incredible',
+  'Miraculous',
   'Perfect'
 ];
 
@@ -52,11 +72,25 @@ const Calc = {
   },
 
   moods: {
-    average: function (moods = [], decision) {
+    average: function (moods = [], decision, weighted = false) {
       const validMoods = moods.filter(mood => mood.set);
       if (!moods || validMoods.length === 0) return -1;
       const sumVals = validMoods.reduce((acc, mood) => acc + mood.val, 0);
-      const avg = sumVals / validMoods.length;
+      let avg = sumVals / validMoods.length;
+
+      if (weighted) {
+        console.log(avg);
+        const reverseMoods = moods.slice().reverse();
+        const weight = 0.2;
+        reverseMoods.forEach((mood, i) => {
+          if (!mood.set) return;
+          // const weight = (moods.length + 5 - i) * 0.05;
+          avg = (avg * (1 - weight)) + mood.val * weight;
+          console.log(mood.val, weight, avg);
+        });
+        console.log(avg);
+      }
+
       if (!decision) return avg;
       
       const best = Calc.slices.best(decision, 'options').score;
@@ -70,7 +104,7 @@ const Calc = {
     },
 
     summary: function (moods) {
-      const avg = this.average(moods);
+      const avg = this.average(moods, null, true);
       if (avg < 0) return 'Undecided';
       if (moods.filter(mood => mood.set).length < Math.min(moods.length, 3)) return 'Undecided';
       return moodSummaries[Math.round((avg - 1) / 4 * (moodSummaries.length - 1))] || 'Unknown';

@@ -273,13 +273,14 @@ export default [
           body: 'All of your options look great for this factor.',
           bg: 'grad-4'
         })
-      } else if (!moods.find(mood => mood.val < 3)) {
-        insights.push({
-          title: factor.name,
-          body: 'All of your options look good for this factor.',
-          bg: 'mostly-p'
-        })
       }
+      //  else if (!moods.find(mood => mood.val < 3)) {
+      //   insights.push({
+      //     title: factor.name,
+      //     body: 'All of your options look good for this factor.',
+      //     bg: 'mostly-p'
+      //   })
+      // }
 
     });
 

@@ -139,6 +139,13 @@ export default class Decision {
       if (result) this.insights = this.insights.concat(result);
       if (result.stop) stop = true;
     });
+    if (this.insights.length === 0) {
+      this.insights.push({
+        title: 'No Insights Found',
+        body: 'Add more options and factors to see helpful tips and recommendations.',
+        bg: 'subtle'
+      });
+    }
     // this.insights = this.insights.sort((a, b) => a.order - b.order);
 
     return this.insights;
