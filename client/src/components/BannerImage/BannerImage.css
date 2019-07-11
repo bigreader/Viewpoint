@@ -33,3 +33,11 @@
   letter-spacing: -0.03em;
   color: white;
 }
+
+.banner-image svg {
+  position: absolute;
+  right: 2rem;
+  bottom: 0.75rem;
+  width: 4rem;
+  height: 4rem;
+}

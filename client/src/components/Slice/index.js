@@ -20,7 +20,7 @@ export default ({ decision, selected, ...props }) => {
 
   return (
     <>
-      <BannerImage title={slice.name} summary={Calc.moods.summary(moods)} bg={Calc.moods.bg(moods, decision)} />
+      <BannerImage title={slice.name} summary={Calc.moods.summary(moods)} value={Calc.moods.average(moods)} bg={Calc.moods.bg(moods, decision)} />
       {slice.img && <img className="img-fluid rounded my-3" src={slice.img} alt={decision.title} />}
       <MoodList decision={decision} side={searchKey} moods={moods} onMoodChange={props.onMoodChange} />
     </>
