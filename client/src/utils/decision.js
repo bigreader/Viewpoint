@@ -132,11 +132,14 @@ export default class Decision {
     if (this.insights) return this.insights;
 
     this.insights = [];
+    let stop = false;
     insightTemplates.forEach(template => {
+      if (stop) return;
       const result = template(this);
       if (result) this.insights = this.insights.concat(result);
+      if (result.stop) stop = true;
     });
-    this.insights = this.insights.sort((a, b) => a.order - b.order);
+    // this.insights = this.insights.sort((a, b) => a.order - b.order);
 
     return this.insights;
   }

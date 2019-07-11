@@ -24,21 +24,32 @@ export default [
       return {
         title: 'Add some options',
         body: "Add a few of the options you're deciding between.",
-        bg: 'subtle'
+        bg: 'subtle',
+        stop: true
       }
     }
     if (decision.factors.length === 0) {
       return {
         title: 'Add some factors',
         body: 'Enter some factors that might influence your decision.',
-        bg: 'subtle'
+        bg: 'subtle',
+        stop: true
       }
     }
     if (decision.moods.filter(mood => mood.set).length === 0) {
       return {
         title: 'Add some feelings',
         body: 'Select an option or factor, then select how you feel about each aspect of your decision.',
-        bg: 'subtle'
+        bg: 'subtle',
+        stop: true
+      }
+    }
+    if (decision.moods.filter(mood => mood.set).length < decision.moods.length * 0.8) {
+      return {
+        title: 'Keep adding feelings',
+        body: 'Continue adding feelings to see more insights into your decision.',
+        bg: 'subtle',
+        stop: true
       }
     }
     return false;

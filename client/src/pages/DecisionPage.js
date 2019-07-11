@@ -14,8 +14,7 @@ class DecisionPage extends React.Component {
     selected: {
       from: '',
       id: ''
-    },
-    slice: {}
+    }
   }
 
   componentDidMount() {
@@ -32,6 +31,7 @@ class DecisionPage extends React.Component {
     const decision = new Decision(this.props.id);
     decision.onRefresh(() => this.forceUpdate());
     decision.onChange(() => this.forceUpdate());
+
     this.setState({
       decision,
       selected: {
@@ -43,8 +43,7 @@ class DecisionPage extends React.Component {
 
   selectSlice = (from, id) => {
     this.setState({
-      selected: { from, id },
-      slice: this.state.decision[from].find(doc => doc._id === id)
+      selected: { from, id }
     });
   }
 
@@ -68,6 +67,11 @@ class DecisionPage extends React.Component {
           </PageContainer>
         </>
       )
+    }
+
+    if (this.state.selected.from && !this.state.decision[this.state.selected.from].find(doc => doc._id === this.state.selected.id)) {
+      this.setState({ selected: { from: '', id: '' }});
+      return null;
     }
 
     return (

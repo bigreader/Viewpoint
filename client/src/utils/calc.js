@@ -72,7 +72,8 @@ const Calc = {
     summary: function (moods) {
       const avg = this.average(moods);
       if (avg < 0) return 'Undecided';
-      return moodSummaries[Math.round(avg / 5 * moodSummaries.length - 1)] || 'Unknown';
+      if (moods.filter(mood => mood.set).length < Math.min(moods.length, 3)) return 'Undecided';
+      return moodSummaries[Math.round((avg - 1) / 4 * (moodSummaries.length - 1))] || 'Unknown';
     },
 
     bg: function (moods, decision) {
