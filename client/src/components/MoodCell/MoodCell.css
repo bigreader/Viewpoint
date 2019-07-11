@@ -1,3 +1,4 @@
+/*
 .mood-list .title {
   transition: opacity 0.1s ease-in-out;
 }
@@ -9,6 +10,7 @@
 .mood-cell:hover .title {
   opacity: 1;
 }
+*/
 
 .mood-cell {
   display: flex;

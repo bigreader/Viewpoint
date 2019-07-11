@@ -1,7 +1,9 @@
 import React from 'react';
-import EditHead from '../EditHead';
+// import EditHead from '../EditHead';
 import MoodList from '../MoodList';
 import Placeholder from '../Placeholder';
+import BannerImage from '../BannerImage';
+import Calc from '../../utils/calc';
 
 export default ({ decision, selected, ...props }) => {
   if (!decision || !selected.id) {
@@ -18,7 +20,7 @@ export default ({ decision, selected, ...props }) => {
 
   return (
     <>
-      <EditHead>{slice.name}</EditHead>
+      <BannerImage title={slice.name} summary={Calc.moods.summary(moods)} bg={Calc.moods.bg(moods, decision)} />
       {slice.img && <img className="img-fluid rounded my-3" src={slice.img} alt={decision.title} />}
       <MoodList decision={decision} side={searchKey} moods={moods} onMoodChange={props.onMoodChange} />
     </>
